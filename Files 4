@@ -7,10 +7,9 @@ namespace Files
         {
             string path = @"C:\Users\danie\Documents\Visual Studio 2022\Files\";
 
-            using (Stream dS = File.OpenWrite(path + "PersonsSorted.txt"))
-            using (Stream srcStream = File.OpenRead(path + "POI-Other.txt"))
             using (StreamReader sr = new StreamReader(path + "Persons.txt"))
             using (StreamWriter swF = new StreamWriter(path + "POI-Female.txt"))
+            using (StreamWriter swO = new StreamWriter(path + "POI-Other.txt"))
             using (StreamWriter swPS = new StreamWriter(path + "PersonsSorted.txt"))
             {
                 while (!sr.EndOfStream)
@@ -25,16 +24,16 @@ namespace Files
                         swF.WriteLine(str);
                         swPS.WriteLine(str);
                     }
-                    else if (str == Lines.Last())
-                    {
-                        srcStream.CopyTo(dS);
-                    }
                     else
                     {
-                        using (StreamWriter swO = new StreamWriter(path + "POI-Other.txt"))
-                        {
-                            swO.WriteLine(str);
-                        }
+                        swO.WriteLine(str);
+                    }
+                }
+                foreach (string str in Lines)
+                {
+                    if (!str.Contains("Female"))
+                    {
+                        swPS.WriteLine(str);
                     }
                 }
             }
