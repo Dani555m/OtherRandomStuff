@@ -1,0 +1,34 @@
+namespace Files
+{
+    internal class Program
+    {
+        static List<string> Lines = new List<string>();
+        static void Main(string[] args)
+        {
+            string path = @"C:\Users\danie\Documents\Visual Studio 2022\Files\";
+
+            using (StreamReader sr = new StreamReader(path + "Persons.txt"))
+            using (StreamWriter swF = new StreamWriter(path + "POI-Female.txt"))
+            using (StreamWriter swO = new StreamWriter(path + "POI-Other.txt"))
+            using (StreamWriter swPS = File.CreatePath(path + "PersonsSorted.txt"))
+            {
+                while (!sr.EndOfStream)
+                {
+                    Lines.Add(sr.ReadLine()!);
+                    Console.WriteLine(sr);
+                }
+                foreach (string str in Lines)
+                {
+                    if (str.Contains(",Female"))
+                    {
+                        swF.WriteLine(str.Split(",")[4]);
+                    } else
+                    {
+                        swO.WriteLine(str.Split(",")[4]);
+                    }
+                    swPS.WriteLine(str.Split(",")[4]);
+                }
+            }
+        }
+    }
+}
