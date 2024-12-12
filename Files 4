@@ -24,7 +24,7 @@ namespace Files
                         swF.WriteLine(str);
                         swPS.WriteLine(str);
                     }
-                    else if (str = Lines.Last())
+                    else if (str == Lines.Last())
                     {
                         Files.Copy(swPS, swO);
                     } else
