@@ -10,34 +10,34 @@ namespace Files
             using (StreamReader sr = new StreamReader(path + "Persons.txt"))
             using (StreamWriter swF = new StreamWriter(path + "POI-Female.txt"))
             using (StreamWriter swO = new StreamWriter(path + "POI-Other.txt"))
-            using (StreamWriter swPS = File.CreatePath(path + "PersonsSorted.txt"))
+            using (StreamWriter swPS = File.CreateText(path + "PersonsSorted.txt"))
             {
                 while (!sr.EndOfStream)
                 {
                     Lines.Add(sr.ReadLine()!);
+                }
+                foreach (string str in Lines)
+                {
                     Console.WriteLine(sr);
-                    foreach (string str in Lines) {
-                        if (str.Contains("Female"))
-                        {
-                            swF.WriteLine(str);
-                            swPS.WriteLine(str);
-                            Females.Add(str);
-                        } else
-                        {
-                            swO.WriteLine(str);
-                        }
+                    if (str.Contains("Female"))
+                    {
+                        swF.WriteLine(str);
+                        swPS.WriteLine(str);
+                    }
+                    else
+                    {
+                        swO.WriteLine(str);
                     }
                 }
                 foreach (string str in Lines)
                 {
-                        if (!str.Contains("Female"))
-                        {
-                            swPS.WriteLine(str);
-                        }
+                    if (!str.Contains("Female"))
+                    {
+                        swPS.WriteLine(str);
                     }
                 }
-
             }
+
         }
     }
 }
