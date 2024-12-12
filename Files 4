@@ -26,7 +26,7 @@ namespace Files
                     }
                     else if (str == Lines.Last())
                     {
-                        Files.Copy(swPS, swO);
+                        Files.Copy(swPS, swO, true);
                     } else
                     {
                         swO.WriteLine(str);
