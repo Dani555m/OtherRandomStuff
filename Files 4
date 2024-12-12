@@ -3,7 +3,6 @@ namespace Files
     internal class Program
     {
         static List<string> Lines = new List<string>();
-        static List<string> Females = new List<string>();
         static void Main(string[] args)
         {
             string path = @"C:\Users\danie\Documents\Visual Studio 2022\Files\";
