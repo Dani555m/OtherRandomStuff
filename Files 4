@@ -3,6 +3,7 @@ namespace Files
     internal class Program
     {
         static List<string> Lines = new List<string>();
+        static List<string> Females = new List<string>();
         static void Main(string[] args)
         {
             string path = @"C:\Users\danie\Documents\Visual Studio 2022\Files\";
@@ -16,18 +17,27 @@ namespace Files
                 {
                     Lines.Add(sr.ReadLine()!);
                     Console.WriteLine(sr);
+                    foreach (string str in Lines) {
+                        if (str.Contains("Female"))
+                        {
+                            swF.WriteLine(str);
+                            swPS.WriteLine(str);
+                            Females.Add(str);
+                        } else
+                        {
+                            swO.WriteLine(str);
+                        }
+                    }
                 }
                 foreach (string str in Lines)
                 {
-                    if (str.Contains(",Female"))
-                    {
-                        swF.WriteLine(str.Split(",")[4]);
-                    } else
-                    {
-                        swO.WriteLine(str.Split(",")[4]);
+                        if (!str.Contains("Female"))
+                        {
+                            swPS.WriteLine(str);
+                        }
                     }
-                    swPS.WriteLine(str.Split(",")[4]);
                 }
+
             }
         }
     }
