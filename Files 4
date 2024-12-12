@@ -10,7 +10,7 @@ namespace Files
             using (StreamReader sr = new StreamReader(path + "Persons.txt"))
             using (StreamWriter swF = new StreamWriter(path + "POI-Female.txt"))
             using (StreamWriter swO = new StreamWriter(path + "POI-Other.txt"))
-            using (StreamWriter swPS = File.CreateText(path + "PersonsSorted.txt"))
+            using (StreamWriter swPS = new StreamWriter(path + "PersonsSorted.txt"))
             {
                 while (!sr.EndOfStream)
                 {
@@ -24,20 +24,15 @@ namespace Files
                         swF.WriteLine(str);
                         swPS.WriteLine(str);
                     }
-                    else
+                    else if (str = Lines.Last())
+                    {
+                        Files.Copy(swPS, swO);
+                    } else
                     {
                         swO.WriteLine(str);
                     }
                 }
-                foreach (string str in Lines)
-                {
-                    if (!str.Contains("Female"))
-                    {
-                        swPS.WriteLine(str);
-                    }
-                }
             }
-
         }
     }
 }
