@@ -18,7 +18,7 @@ namespace Files
                 }
                 foreach (string str in Lines)
                 {
-                    Console.WriteLine(sr);
+                    Console.WriteLine(str);
                     if (str.Contains("Female"))
                     {
                         swF.WriteLine(str);
