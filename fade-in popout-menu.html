@@ -1,0 +1,94 @@
+<style>
+.add_element {
+  cursor: pointer;
+  position: absolute;
+  bottom: 120px;
+  right: 80px;
+  height: 80px;
+}
+.edit-button {
+  cursor: pointer;
+}
+.fade-in {
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 1s;
+}
+
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.popup-menu {
+    display: none;
+    position: absolute;
+    top: -150%;
+    left: 20%;
+    z-index: 10;
+}
+.popup-menu.visible {
+  display: block;
+}
+.popup-menu p {
+  margin: 0;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.popup-menu p:hover {
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+.popup-menu-items {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.circle-s {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 1rem;
+  background-color: white;
+}
+</style>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector(".edit-button");
+    const menu = document.querySelector(".popup-menu");
+
+    button.addEventListener("click", function (event) {
+        menu.classList.toggle("visible");
+        event.stopPropagation();
+    });
+    document.addEventListener("click", function (event) {
+        if (!menu.contains(event.target)) { 
+            menu.classList.remove("visible");
+        }
+    });
+});
+</script>
+<div class="add_element edit-button">
+  <span class="">Rediger</span>
+  <span class="circle">✎</span>
+  <div class="popup-menu fade-in">
+    <div class="popup-menu-items">
+  	<span>Option</span><span class="circle-s">1</span>
+  </div>
+  <div class="popup-menu-items">
+    <span>Option</span><span class="circle-s">2</span>
+  </div>
+    <div class="popup-menu-items">
+      <span>Option</span><span class="circle-s">3</span>
+    </div>
+</div>
